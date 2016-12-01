@@ -3,3 +3,5 @@ nuget FAKE
 nuget FSharp.Core
 nuget FsUnit
 nuget FsUnit.Xunit
+nuget Xunit.Assert
+nuget Xunit.Runner.Console
