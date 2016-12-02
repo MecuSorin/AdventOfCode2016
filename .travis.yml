@@ -1,0 +1,9 @@
+language: csharp
+solution: AdventOfCode2016.sln
+mono:
+    - latest
+script:
+    - mono .paket/paket.bootstrapper.exe 
+    - mono .paket/paket.exe install 
+    - xbuild Specs/Specs.fsproj 
+    - mono Specs/bin/Debug/Specs.exe 
