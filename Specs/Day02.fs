@@ -30,5 +30,5 @@ let puzzle2Tests =
         testCase "Sample" <| fun _ ->
             Expect.equal (findTheCodeAdvancedKeypad sampleInput) "5DB3" "Sample 2"
         testCase "Puzzle question 1" <| fun _->
-            Expect.equal (findTheCodeAdvancedKeypad puzzleInput) "" "Puzzle question 2"
+            Expect.equal (findTheCodeAdvancedKeypad puzzleInput) "74CD2" "Puzzle question 2"
     ] 
