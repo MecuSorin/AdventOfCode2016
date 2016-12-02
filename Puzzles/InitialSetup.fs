@@ -1,5 +1,4 @@
-namespace Puzzles
+module InitialSetup
 
-module ``Initial setup`` =
-    type Loving() = 
-        member this.X = "F#"
+type Loving() = 
+    member this.X = "F#"

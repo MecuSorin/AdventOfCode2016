@@ -1,7 +1,5 @@
 source https://www.nuget.org/api/v2
-nuget FAKE
+nuget Expecto
+nuget Expecto.FsCheck
+nuget Expecto.PerfUtil
 nuget FSharp.Core
-nuget FsUnit
-nuget FsUnit.Xunit
-nuget Xunit.Assert
-nuget Xunit.Runner.Console

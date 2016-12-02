@@ -26,7 +26,7 @@ let cleanDirs () = CleanDirs [buildDir; deployDir]
 Target "Clean" (fun _ -> cleanDirs() )
 
 Target "Build" (fun _ ->
-    // compile all projects below src/app/
+    // compile all projects
     MSBuildDebug buildDir "Build" appReferences
         |> Log "AppBuild-Output: "
 )
