@@ -10,7 +10,7 @@ let getRoom input =
     if matches.Success 
     then
         Some { 
-                Name = matches.Groups.["name"].Value.Replace("-", String.Empty)
+                Name = matches.Groups.["name"].Value
                 Code = matches.Groups.["code"].Value |> int
                 Checksum = matches.Groups.["checksum"].Value
              }
@@ -18,21 +18,42 @@ let getRoom input =
         None
 
 let computeChecksum room = 
-    room.Name
+    room.Name.Replace("-", String.Empty)
     |> Seq.groupBy id
     |> Seq.sortByDescending (fun (f, s) -> 1000 * (Seq.length s) - int f)
     |> Seq.take 5
     |> Seq.map fst
     |> String.Concat
 
-let getCodeFromRealRoom roomOption =
+let getRealRoom roomOption =
     match roomOption with
-    | None -> 0
+    | None -> None
     | Some room ->
         if room.Checksum = computeChecksum room 
-        then room.Code 
-        else 0
+        then roomOption
+        else None
+
+let getCodeFromRealRoom roomOption =
+    match getRealRoom roomOption with
+    | Some r -> r.Code
+    | None -> 0
         
 let getSumOfRealRooms inputLines =
     inputLines
     |> Seq.sumBy (getRoom >> getCodeFromRealRoom)
+
+let azDelta = int 'z' - int 'a' + 1
+let shiftToRight positions ch =
+    match ch with
+    | '-' -> if 0 = positions % 2 then '-' else ' '
+    | ' ' -> if 0 = positions % 2 then ' ' else '_'
+    | _ ->  char ((int ch - int 'a' + positions ) % azDelta + int 'a')
+
+let decryptRoom room =
+    room 
+    |> Option.map (fun r-> 
+                        let decodedName =
+                            r.Name
+                            |> Seq.map (shiftToRight r.Code)
+                            |> String.Concat
+                        decodedName, r.Code)

@@ -12,11 +12,11 @@ let goodRoomTestCase input expected = helperTestCase "Good room " input expected
 
 let badRoomTestCase input = helperTestCase "Bad room " input 0 (getRoom >> getCodeFromRealRoom)
 
-let sampleRoom = {Name = "aaaaabbbzyx"; Code = 123; Checksum = "abxyz"}
+let sampleRoom = {Name = "aaaaa-bbb-z-y-x-"; Code = 123; Checksum = "abxyz"}
 
 [<Tests>]
 let puzzle1Tests =
-    testList "Puzzle 1" [
+    testList "Day 04 Puzzle 1" [
         testCase "Identify room info" <| fun _ ->
             let actual = getRoom "aaaaa-bbb-z-y-x-123[abxyz]"        
             let expected = Some sampleRoom
@@ -38,3 +38,22 @@ let puzzle1Tests =
             let puzzleInput = readAllLines "Day04.input.txt"
             Expect.equal (getSumOfRealRooms puzzleInput) 137896 "Puzzle question 1"
     ] 
+
+[<Tests>]
+let puzzle2Tests =
+    testList "Day 04 Puzzle 2" [
+        testCase "Decrypt room name " <| fun _ ->
+            let input = Some { Name = "qzmt-zixmtkozy-ivhz-"; Code = 343; Checksum = ""}
+            Expect.equal (decryptRoom input) (Some ("very encrypted name ", 343)) "Decrypt room name"
+        testCase "Day 04 Puzzle question 2" <| fun _->
+            let puzzleInput = readAllLines "Day04.input.txt"
+            let firstRoomWithNorthPole =
+                puzzleInput
+                |> Array.map (getRoom >> getRealRoom >> decryptRoom)
+                // |> Array.iter ( Option.iter (fun (n,c) -> printfn "%i\t%s" c n))
+                |> Array.filter Option.isSome
+                |> Array.map Option.get
+                |> Array.filter (fun (n, _) -> n.Contains "northpole")
+                |> Array.head
+            Expect.equal (snd firstRoomWithNorthPole) 501 "Day 04 Puzzle question 2"
+    ]
