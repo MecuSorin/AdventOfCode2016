@@ -1,6 +1,7 @@
 module Samples 
 
 open System.IO
+open Expecto
 
 [<Literal>]
 let SampleInputFolder = "Specs/SampleInputs/"
@@ -11,3 +12,7 @@ let readAllLines fileName =
     File.ReadAllLines (file fileName)
 
 type STestsAttribute() = inherit System.Attribute()
+
+let simpleEqualTestCase<'T when 'T: equality> name (actual: Lazy<'T>) (expected:'T) =
+    testCase name <| fun _ ->
+        Expect.equal (actual.Force()) expected name
