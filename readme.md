@@ -5,4 +5,10 @@
 
 Thanks to http://adventofcode.com/ for the puzzles
 
+Note: You can find the funny tooltips faster if inject the following CSS in the browser when navigate to the adventofcode page:
+
+```CSS
+    article *[title]{border-bottom:1px dotted #36156d;}
+```
+
 ### Here you will find my F# solutions for puzzles
