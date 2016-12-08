@@ -2,14 +2,18 @@ module Puzzles.Day06
 
 open System
 
-let mostCommon items =
+
+let rawListProcessing sorter items =
     items
     |> List.groupBy id
-    |> List.sortByDescending (snd >> List.length)
+    |> sorter (snd >> List.length)
     |> List.head
     |> fst
 
-let getPredominant (input: string []) =
+let mostCommon = rawListProcessing (List.sortByDescending)
+let scarce = rawListProcessing (List.sortBy)
+
+let getByDistribution (distributionMapper: char list -> char) (input: string []) =
     let verticalSplices = Array.init ((Array.head input).Length) (fun _ -> [])
      
     input
@@ -17,5 +21,9 @@ let getPredominant (input: string []) =
         row
         |> Seq.mapi (fun i letter -> letter :: (cumulative.[i]))
         |> Seq.toArray) verticalSplices
-    |> Array.map mostCommon
+    |> Array.map distributionMapper
     |> String.Concat    
+
+let getPredominant = getByDistribution mostCommon
+
+let getScarce = getByDistribution scarce
