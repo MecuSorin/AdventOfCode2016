@@ -33,7 +33,7 @@ let puzzle2Tests =
             (lazy(parallelGetAdvancedPassword "abc" 3231928)) "05ace8e3"
              
         simpleEqualTestCase "Puzzle question 2 single thread"
-            (lazy(getAdvancedPassword "uqwqemis" 0)) "?"
+            (lazy(getAdvancedPassword "uqwqemis" 0)) "694190cd"
         
         simpleEqualTestCase "Puzzle question 2 in parallel" 
             (lazy (parallelGetAdvancedPassword "uqwqemis" 0)) "694190cd"

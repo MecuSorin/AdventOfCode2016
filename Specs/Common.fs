@@ -1,5 +1,6 @@
 module Samples 
 
+open System
 open System.IO
 open Expecto
 
@@ -10,6 +11,8 @@ let file fileName =
 
 let readAllLines fileName =
     File.ReadAllLines (file fileName)
+
+let toLines (txt: string) = txt.Split([|"\n"|], StringSplitOptions.RemoveEmptyEntries)
 
 type STestsAttribute() = inherit System.Attribute()
 
