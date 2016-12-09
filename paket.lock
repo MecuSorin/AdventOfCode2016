@@ -12,6 +12,7 @@ NUGET
       Expecto (>= 1.0.12)
       FSharp.Core (>= 3.1.2.5)
       PerfUtil (>= 0.1.8)
+    FParsec (1.0.2)
     FsCheck (2.6.2)
       FSharp.Core (>= 3.1.2.5)
     FSharp.Core (4.0.0.1)
