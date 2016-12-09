@@ -40,6 +40,15 @@ let puzzle1Tests =
 
         test "Puzzle 1 input" {
             let lines = readAllLines "Day08.input.txt"
-            Expect.equal (evaluateVolatage 6 50 lines) 106 "Puzzle 1 input" 
+            let actual = evaluateMatrix 6 50 lines |> computeLightsCount
+            Expect.equal actual 106 "Puzzle 1 input" 
         }
     ]
+
+[<STests>]
+let puzzle2Test = 
+    testCase "Puzzle 2 maybe a tesseract in the future" <| fun _ ->
+        let lines = readAllLines "Day08.input.txt"
+        evaluateMatrix 6 50 lines 
+        |> fun m -> printfn "%A" ( m |> Array.map (String.concat ""))
+    

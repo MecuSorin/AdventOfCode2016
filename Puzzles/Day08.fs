@@ -79,8 +79,8 @@ let parseMatrixCommand (text:string) =
     | Success(result, _, _) -> Some result
     | Failure(errorMsg, _, _) -> None
 
-let evaluateVolatage rows cols commands =
+let evaluateMatrix rows cols commands =
     commands
     |> Array.choose parseMatrixCommand
     |> runCommands (createMatrix rows cols)
-    |> computeLightsCount
+
