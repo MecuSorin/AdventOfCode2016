@@ -58,6 +58,7 @@
     <Compile Include="Day06.fs" />
     <Compile Include="Day07.fs" />
     <Compile Include="Day08.fs" />
+    <Compile Include="Day09.fs" />
     <Compile Include="Specs.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

@@ -11,7 +11,8 @@ let file fileName =
 
 let readAllLines fileName =
     File.ReadAllLines (file fileName)
-
+let readAllText fileName = 
+    File.ReadAllText (file fileName)
 let toLines (txt: string) = txt.Split([|"\n"|], StringSplitOptions.RemoveEmptyEntries)
 
 type STestsAttribute() = inherit System.Attribute()
